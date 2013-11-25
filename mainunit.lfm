@@ -13,7 +13,7 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   LCLVersion = '1.0.12.0'
   object PageControl: TPageControl
-    Left = 190
+    Left = 192
     Height = 510
     Top = 0
     Width = 650
@@ -33,6 +33,7 @@ object MainForm: TMainForm
         Height = 486
         Top = 0
         Width = 650
+        OnMouseDown = GraphMouseDown
       end
       object ToolBar: TToolBar
         Left = 0
@@ -47,6 +48,7 @@ object MainForm: TMainForm
           Hint = 'Add vertex'
           Top = 2
           Caption = 'AddVertex'
+          Grouped = True
           ImageIndex = 0
           ParentShowHint = False
           ShowHint = True
@@ -57,6 +59,7 @@ object MainForm: TMainForm
           Hint = 'Add edge'
           Top = 2
           Caption = 'AddEdge'
+          Grouped = True
           ImageIndex = 1
           ParentShowHint = False
           ShowHint = True
@@ -67,6 +70,7 @@ object MainForm: TMainForm
           Top = 2
           Width = 10
           Caption = 'Devider'
+          Grouped = True
           Style = tbsSeparator
         end
         object DeleteVertex: TToolButton
@@ -74,6 +78,7 @@ object MainForm: TMainForm
           Hint = 'Delete vertex'
           Top = 2
           Caption = 'DeleteVertex'
+          Grouped = True
           ImageIndex = 2
           ParentShowHint = False
           ShowHint = True
@@ -84,6 +89,7 @@ object MainForm: TMainForm
           Hint = 'Delete edge'
           Top = 2
           Caption = 'DeleteEdge'
+          Grouped = True
           ImageIndex = 3
           ParentShowHint = False
           ShowHint = True
@@ -100,6 +106,8 @@ object MainForm: TMainForm
         Height = 486
         Top = 0
         Width = 648
+        ColCount = 1
+        RowCount = 1
         TabOrder = 0
       end
     end
