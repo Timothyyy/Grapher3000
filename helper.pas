@@ -8,13 +8,13 @@ uses
   Classes, SysUtils;
 
 type
-  //Edge class
-  TEdge = Class(TObject)
+  //Vertex class
+  TVertex = Class(TObject)
     private
-      //Fields of Edge class
-      EdgeId : Integer;
-      EdgeX : Integer;
-      EdgeY : Integer;
+      //Fields of Vertex class
+      VertexId : Integer;
+      VertexX : Integer;
+      VertexY : Integer;
       //Id setter
       procedure SetId(const Id: Integer);
     public
@@ -22,28 +22,28 @@ type
       constructor Create(const Id : Integer; const X : Integer; const Y : Integer);
       //Properties for read data
       property Id : Integer
-          read EdgeId
-          write SetId;
+          read VertexId
+          write VertexId;
       property X : Integer
-          read EdgeX;
+          read VertexX;
       property Y : Integer
-          read EdgeY;
+          read VertexY;
   end;
 
 implementation
 
-//Implementing of TEdge class constructor
-constructor TEdge.Create(const Id : Integer; const X : Integer; const Y : Integer);
+//Implementing of TVertex class constructor
+constructor TVertex.Create(const Id : Integer; const X : Integer; const Y : Integer);
 begin
-  self.EdgeId := Id;
-  self.EdgeX := X;
-  self.EdgeY := Y;
+  self.VertexId := Id;
+  self.VertexX := X;
+  self.VertexY := Y;
 end;
 
-//Id setter of TEdge
-procedure TEdge.SetId(const Id : integer);
+//Id setter of TVertex
+procedure TVertex.SetId(const Id : integer);
 begin
-  self.EdgeId := Id;
+  self.VertexId := Id;
 end;
 
 end.
