@@ -95,6 +95,13 @@ object MainForm: TMainForm
           ShowHint = True
           Style = tbsCheck
         end
+        object ToolButton1: TToolButton
+          Left = 103
+          Top = 2
+          Caption = 'ToolButton1'
+          Grouped = True
+          Style = tbsCheck
+        end
       end
     end
     object MatrixView: TTabSheet

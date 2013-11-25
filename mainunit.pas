@@ -25,6 +25,7 @@ type
     Devider: TToolButton;
     DeleteVertex: TToolButton;
     DeleteEdge: TToolButton;
+    ToolButton1: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure GraphMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -32,6 +33,7 @@ type
     { private declarations }
     Edges : TList;
     Verteces : TList;
+    BeginVertex : Integer;
   public
     { public declarations }
   end;
@@ -71,8 +73,12 @@ begin
       Graph.Canvas.TextOut(X - 6, Y - 8, IntToStr(Verteces.Count + 1));
       Verteces.Add(TVertex.Create(Verteces.Count + 1, X, Y));
     end;
-  if AddEdge.Down then
+  if ToolButton1.Down then
     ShowMessage(IntToStr(Verteces.Count));
+  if AddEdge.Down then
+    begin
+      ShowMessage(BoolToStr(CheckVertex(X, Y, Verteces), True));
+    end;
 end;
 
 end.

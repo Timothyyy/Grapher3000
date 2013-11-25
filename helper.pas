@@ -5,7 +5,7 @@ unit Helper;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, Math;
 
 type
   //Vertex class
@@ -29,6 +29,7 @@ type
       property Y : Integer
           read VertexY;
   end;
+function CheckVertex(X, Y : integer; verteces : TList): boolean;
 
 implementation
 
@@ -44,6 +45,21 @@ end;
 procedure TVertex.SetId(const Id : integer);
 begin
   self.VertexId := Id;
+end;
+
+//Is click point belongs to vertex?
+function CheckVertex(X, Y: integer; verteces : TList): Boolean;
+var
+  res : Boolean;
+  i : Integer;
+begin
+  res:=False;
+  for i:=0 to verteces.Count - 1 do
+  begin
+    if power(X - TVertex(verteces[i]).X, 2) + power(Y - TVertex(verteces[i]).Y, 2) <= 100 then
+      res:=True;
+  end;
+  CheckVertex:=res;
 end;
 
 end.
