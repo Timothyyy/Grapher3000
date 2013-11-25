@@ -11,65 +11,119 @@ type
   //Vertex class
   TVertex = Class(TObject)
     private
-      //Fields of Vertex class
-      VertexId : Integer;
-      VertexX : Integer;
-      VertexY : Integer;
+      //Fields of TVertex class
+      VertexId: Integer;
+      VertexX: Integer;
+      VertexY: Integer;
       //Id setter
       procedure SetId(const Id: Integer);
     public
       //Constructor
-      constructor Create(const Id : Integer; const X : Integer; const Y : Integer);
-      //Properties for read data
-      property Id : Integer
+      constructor Create(const Id: Integer; const X: Integer; const Y: Integer);
+      //Properties for read/write data
+      property Id: Integer
           read VertexId
-          write VertexId;
-      property X : Integer
+          write SetId;
+      property X: Integer
           read VertexX;
-      property Y : Integer
+      property Y: Integer
           read VertexY;
   end;
 
-function CheckVertex(X, Y : integer; verteces : TList): boolean;
+  //Edge class
+  TEdge = Class(TObject)
+    private
+      //Fields of TEdge
+      EdgeId: Integer;
+      BeginVertex: TVertex;
+      EndVertex: TVertex;
+      EdgeWeight: Integer;
+      procedure SetId(const Id: Integer);
+    public
+      //Constructor
+      constructor Create(const Id: Integer; Start, Finish: TVertex; const Weight: Integer);
+      //Properties for read/write data
+      property Id: Integer
+          read EdgeId
+          write SetId;
+      property Start: TVertex
+          read BeginVertex;
+      property Finish: TVertex
+          read EndVertex;
+      property Weight: Integer
+          read EdgeWeight;
+  end;
 
-procedure DrawVertex(X, Y : integer; graph : TImage; verteces : TList);
+  function CheckVertex(const X, Y: Integer; Verteces: TList): Boolean;
+
+  procedure DrawVertex(const X, Y: Integer; Graph: TImage; Verteces: TList);
+
+  function GetBeginVertex(const X, Y: Integer; Verteces: TList): TVertex;
 
 implementation
 
-//Implementing of TVertex class constructor
-constructor TVertex.Create(const Id : Integer; const X : Integer; const Y : Integer);
+//TVertex class constructor
+constructor TVertex.Create(const Id: Integer; const X: Integer; const Y: Integer);
 begin
-  self.VertexId := Id;
-  self.VertexX := X;
-  self.VertexY := Y;
+  Self.VertexId := Id;
+  Self.VertexX := X;
+  Self.VertexY := Y;
 end;
 
 //Id setter of TVertex
-procedure TVertex.SetId(const Id : integer);
+procedure TVertex.SetId(const Id: Integer);
 begin
   self.VertexId := Id;
 end;
 
-//Is click point belongs to vertex?
-function CheckVertex(X, Y: integer; verteces : TList): Boolean;
-var
-  res : Boolean;
-  i : Integer;
+//TEdge class constructor
+constructor TEdge.Create(const Id: Integer; Start, Finish: TVertex; const Weight: Integer);
 begin
-  res:=False;
-  for i:=0 to verteces.Count - 1 do
-  begin
-    if power(X - TVertex(verteces[i]).X, 2) + power(Y - TVertex(verteces[i]).Y, 2) <= 100 then
-      res:=True;
-  end;
-  CheckVertex:=res;
+  Self.EdgeId := Id;
+  Self.BeginVertex := Start;
+  Self.EndVertex := Finish;
+  Self.EdgeWeight := Weight;
 end;
 
-procedure DrawVertex(X, Y: integer; graph : TImage; verteces: TList);
+//Id setter of TEdge
+procedure TEdge.SetId(const Id: Integer);
+begin
+  Self.EdgeId := Id;
+end;
+
+//Is click point belongs to vertex?
+function CheckVertex(const X, Y: Integer; Verteces: TList): Boolean;
+var
+  i: Integer;
+begin
+  Result := False;
+  for i := 0 to Verteces.Count - 1 do
+    if power(X - TVertex(Verteces[i]).X, 2) + power(Y - TVertex(Verteces[i]).Y, 2) <= 100 then
+    begin
+      Result := True;
+      exit;
+    end;
+end;
+
+//Vertex drawing
+procedure DrawVertex(const X, Y: Integer; Graph: TImage; Verteces: TList);
 begin
   graph.Canvas.Ellipse(X - 10, Y - 10, X + 10, Y + 10);
-  graph.Canvas.TextOut(X - 6, Y - 8, IntToStr(verteces.Count + 1));
-  verteces.Add(TVertex.Create(verteces.Count + 1, X, Y));
+  graph.Canvas.TextOut(X - 6, Y - 8, IntToStr(Verteces.Count + 1));
+  Verteces.Add(TVertex.Create(Verteces.Count + 1, X, Y));
+end;
+
+//Get begin vertex
+function GetBeginVertex(const X, Y: Integer; Verteces: TList): TVertex;
+var
+  i: Integer;
+begin
+  for i := 0 to Verteces.Count - 1 do
+    if power(X - TVertex(Verteces[i]).X, 2) + power(Y - TVertex(Verteces[i]).Y, 2) <= 100 then
+    begin
+      Result := TVertex(Verteces[i]);
+      exit;
+    end;
 end;
 
 end.
