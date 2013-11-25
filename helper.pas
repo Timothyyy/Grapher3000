@@ -5,7 +5,7 @@ unit Helper;
 interface
 
 uses
-  Classes, SysUtils, Math;
+  Classes, SysUtils, Math, ExtCtrls;
 
 type
   //Vertex class
@@ -29,7 +29,10 @@ type
       property Y : Integer
           read VertexY;
   end;
+
 function CheckVertex(X, Y : integer; verteces : TList): boolean;
+
+procedure DrawVertex(X, Y : integer; graph : TImage; verteces : TList);
 
 implementation
 
@@ -60,6 +63,13 @@ begin
       res:=True;
   end;
   CheckVertex:=res;
+end;
+
+procedure DrawVertex(X, Y: integer; graph : TImage; verteces: TList);
+begin
+  graph.Canvas.Ellipse(X - 10, Y - 10, X + 10, Y + 10);
+  graph.Canvas.TextOut(X - 6, Y - 8, IntToStr(verteces.Count + 1));
+  verteces.Add(TVertex.Create(verteces.Count + 1, X, Y));
 end;
 
 end.
