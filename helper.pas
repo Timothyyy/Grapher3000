@@ -5,7 +5,7 @@ unit Helper;
 interface
 
 uses
-  Classes, SysUtils, Math, ExtCtrls;
+  Classes, SysUtils, ExtCtrls;
 
 type
   //Vertex class
@@ -54,15 +54,17 @@ type
           read EdgeWeight;
   end;
 
-  function CheckVertex(const X, Y: Integer; Verteces: TList): Boolean;
+  function CheckVertex(Vertex: TVertex; Verteces: TList): Boolean;
 
-  procedure DrawVertex(const X, Y: Integer; Graph: TImage; Verteces: TList);
+  procedure DrawVertex(Vertex: TVertex; Graph: TImage; Verteces: TList);
 
   function FindVertex(const X, Y: Integer; Verteces: TList): TVertex;
 
   procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
 
   function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
+
+  function VertecesNotIntersect(Vertex: TVertex; Verteces: TList): Boolean;
 
 implementation
 
@@ -96,25 +98,39 @@ begin
 end;
 
 //Is click point belongs to vertex?
-function CheckVertex(const X, Y: Integer; Verteces: TList): Boolean;
+function CheckVertex(Vertex: TVertex; Verteces: TList): Boolean;
 var
   i: Integer;
 begin
   Result := False;
   for i := 0 to Verteces.Count - 1 do
-    if power(X - TVertex(Verteces[i]).X, 2) + power(Y - TVertex(Verteces[i]).Y, 2) <= 100 then
+    if sqr(Vertex.X - TVertex(Verteces[i]).X) + sqr(Vertex.Y - TVertex(Verteces[i]).Y) <= 100 then
     begin
       Result := True;
-      exit;
+      Exit;
     end;
 end;
 
 //Vertex drawing
-procedure DrawVertex(const X, Y: Integer; Graph: TImage; Verteces: TList);
+procedure DrawVertex(Vertex: TVertex; Graph: TImage; Verteces: TList);
 begin
-  graph.Canvas.Ellipse(X - 10, Y - 10, X + 10, Y + 10);
-  graph.Canvas.TextOut(X - 6, Y - 8, IntToStr(Verteces.Count + 1));
-  Verteces.Add(TVertex.Create(Verteces.Count + 1, X, Y));
+  graph.Canvas.Ellipse(Vertex.X - 10, Vertex.Y - 10, Vertex.X + 10, Vertex.Y + 10);
+  graph.Canvas.TextOut(Vertex.X - 6, Vertex.Y - 8, IntToStr(Verteces.Count + 1));
+  Verteces.Add(Vertex);
+end;
+
+//Are verteces intersect?
+function VertecesNotIntersect(Vertex: TVertex; Verteces: TList): Boolean;
+var
+  i: Integer;
+begin
+  Result := True;
+  for i := 0 to Verteces.Count - 1 do
+    if sqrt(sqr(TVertex(Verteces[i]).X - Vertex.X) + sqr(TVertex(Verteces[i]).Y - Vertex.Y)) <= 20 then
+    begin
+      Result := False;
+      Exit;
+    end;
 end;
 
 //Find vertex
@@ -123,10 +139,10 @@ var
   i: Integer;
 begin
   for i := 0 to Verteces.Count - 1 do
-    if power(X - TVertex(Verteces[i]).X, 2) + power(Y - TVertex(Verteces[i]).Y, 2) <= 100 then
+    if sqr(X - TVertex(Verteces[i]).X) + sqr(Y - TVertex(Verteces[i]).Y) <= 100 then
     begin
       Result := TVertex(Verteces[i]);
-      exit;
+      Exit;
     end;
 end;
 
@@ -144,10 +160,11 @@ var
 begin
   Result := True;
   for i := 0 to Edges.Count - 1 do
-    if (TEdge(Edges[i]).Start = BeginVertex) and (TEdge(Edges[i]).Finish = EndVertex) then
+    if ((TEdge(Edges[i]).Start = BeginVertex) and (TEdge(Edges[i]).Finish = EndVertex)) or
+    ((TEdge(Edges[i]).Start = EndVertex) and (TEdge(Edges[i]).Finish = BeginVertex)) then
     begin
       Result := False;
-      exit;
+      Exit;
     end;
 end;
 

@@ -61,27 +61,27 @@ end;
 procedure TMainForm.GraphMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
-  EndVertex: TVertex;
+  TempVertex: TVertex;
 begin
-  if AddVertex.Down then
-    DrawVertex(X, Y, Graph, Verteces);
+  TempVertex := TVertex.Create(Verteces.Count, X, Y);
+  if AddVertex.Down and VertecesNotIntersect(TempVertex, Verteces) then
+    DrawVertex(TempVertex, Graph, Verteces);
   if ToolButton1.Down then
     ShowMessage(IntToStr(Verteces.Count));
   if AddEdge.Down then
   begin
     if BeginVertex <> Nil then
     begin
-      if CheckVertex(X, Y, Verteces) then
+      if CheckVertex(TempVertex, Verteces) then
       begin
-        EndVertex := FindVertex(X, Y, Verteces);
-        if EdgeNotExists(BeginVertex, EndVertex, Edges)then
-          DrawEdge(BeginVertex, EndVertex, Graph, Edges);
+        if EdgeNotExists(BeginVertex, FindVertex(X, Y, Verteces), Edges)then
+          DrawEdge(BeginVertex, FindVertex(X, Y, Verteces), Graph, Edges);
         BeginVertex := Nil;
         ShowMessage(IntToStr(Edges.Count));
       end;
     end
     else
-      if CheckVertex(X, Y, Verteces) then
+      if CheckVertex(TempVertex, Verteces) then
         BeginVertex := FindVertex(X, Y, Verteces);
   end;
 end;
