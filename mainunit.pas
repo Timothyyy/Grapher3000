@@ -31,7 +31,7 @@ type
       Shift: TShiftState; X, Y: Integer);
   private
     { private declarations }
-    //Edges: TList;
+    Edges: TList;
     Verteces: TList;
     BeginVertex: TVertex;
   public
@@ -49,28 +49,19 @@ implementation
 
 //Setting of all requirements
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  temp: TVertex;
 begin
   Verteces := TList.Create;
+  Edges := TList.Create;
   Graph.Canvas.Rectangle(Graph.BoundsRect);
   Graph.Canvas.Clear;
-  BeginVertex := TVertex.Create(1, 50, 50);
-  //BeginVertex := Nil;
-  IsBegin := true;
-  //Graph.Canvas.Ellipse(10, 25, 30, 45);
-  //Graph.Canvas.TextOut(17, 27, '1');
-  {temp := TVertex.Create(1, 5, 5);
-  Verteces.Add(temp);
-  temp := TVertex.Create(2, 6, 6);
-  Verteces.Add(temp);
-  Verteces.Delete(0);
-  ShowMessage(IntToStr(TVertex(Verteces[0]).Id));}
+  BeginVertex := Nil;
 end;
 
 //MouseClick on Graph handler
 procedure TMainForm.GraphMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+var
+  EndVertex: TVertex;
 begin
   if AddVertex.Down then
     DrawVertex(X, Y, Graph, Verteces);
@@ -78,18 +69,18 @@ begin
     ShowMessage(IntToStr(Verteces.Count));
   if AddEdge.Down then
   begin
-    if BeginVertex <> nil then
-    begin
-      if CheckVertex(X, Y, Verteces) then
-        Graph.Canvas.Line(BeginVertex.X - 10, BeginVertex.Y - 10, X, Y);
-    end
-    else
+    if BeginVertex <> Nil then
     begin
       if CheckVertex(X, Y, Verteces) then
       begin
-        BeginVertex := GetBeginVertex(X, Y, Verteces);
+        EndVertex := FindVertex(X, Y, Verteces);
+        DrawEdge(BeginVertex, EndVertex, Graph, Edges);
+        BeginVertex := Nil;
       end;
-    end;
+    end
+    else
+      if CheckVertex(X, Y, Verteces) then
+        BeginVertex := FindVertex(X, Y, Verteces);
   end;
 end;
 

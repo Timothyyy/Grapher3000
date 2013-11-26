@@ -58,7 +58,9 @@ type
 
   procedure DrawVertex(const X, Y: Integer; Graph: TImage; Verteces: TList);
 
-  function GetBeginVertex(const X, Y: Integer; Verteces: TList): TVertex;
+  function FindVertex(const X, Y: Integer; Verteces: TList): TVertex;
+
+  procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
 
 implementation
 
@@ -113,8 +115,8 @@ begin
   Verteces.Add(TVertex.Create(Verteces.Count + 1, X, Y));
 end;
 
-//Get begin vertex
-function GetBeginVertex(const X, Y: Integer; Verteces: TList): TVertex;
+//Find vertex
+function FindVertex(const X, Y: Integer; Verteces: TList): TVertex;
 var
   i: Integer;
 begin
@@ -124,6 +126,13 @@ begin
       Result := TVertex(Verteces[i]);
       exit;
     end;
+end;
+
+//Edge drawing
+procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
+begin
+  Edges.Add(TEdge.Create(Edges.Count + 1, BeginVertex, EndVertex, 1));
+  Graph.Canvas.Line(BeginVertex.X, BeginVertex.Y, EndVertex.X, EndVertex.Y);
 end;
 
 end.
