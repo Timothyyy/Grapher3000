@@ -62,6 +62,8 @@ type
 
   procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
 
+  function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
+
 implementation
 
 //TVertex class constructor
@@ -133,6 +135,20 @@ procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList)
 begin
   Edges.Add(TEdge.Create(Edges.Count + 1, BeginVertex, EndVertex, 1));
   Graph.Canvas.Line(BeginVertex.X, BeginVertex.Y, EndVertex.X, EndVertex.Y);
+end;
+
+//Is the Edge already exists?
+function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
+var
+  i: integer;
+begin
+  Result := True;
+  for i := 0 to Edges.Count - 1 do
+    if (TEdge(Edges[i]).Start = BeginVertex) and (TEdge(Edges[i]).Finish = EndVertex) then
+    begin
+      Result := False;
+      exit;
+    end;
 end;
 
 end.

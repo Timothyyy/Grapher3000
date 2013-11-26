@@ -74,8 +74,10 @@ begin
       if CheckVertex(X, Y, Verteces) then
       begin
         EndVertex := FindVertex(X, Y, Verteces);
-        DrawEdge(BeginVertex, EndVertex, Graph, Edges);
+        if EdgeNotExists(BeginVertex, EndVertex, Edges)then
+          DrawEdge(BeginVertex, EndVertex, Graph, Edges);
         BeginVertex := Nil;
+        ShowMessage(IntToStr(Edges.Count));
       end;
     end
     else
