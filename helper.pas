@@ -148,9 +148,68 @@ end;
 
 //Edge drawing
 procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
+var
+  x1, y1, x2, y2: Integer;
 begin
+  case BeginVertex.Y - EndVertex.Y of
+    Low(Integer)..-21:
+    begin
+      x2 := 0;
+      y2 := -10;
+      if BeginVertex.X - EndVertex.X >= 150 then
+      begin
+        x1 := -10;
+        y1 := 0;
+      end
+      else if abs(BeginVertex.X - EndVertex.X) < 150 then
+      begin
+        x1 := 0;
+        y1 := 10;
+      end
+      else if BeginVertex.X - EndVertex.X <= - 150 then
+      begin
+        x1 := 10;
+        y1 := 0;
+      end;
+    end;
+    -20..20:
+    begin
+      y1 := 0;
+      y2 := 0;
+      if BeginVertex.X - EndVertex.X < -20 then
+      begin
+        x1 := 10;
+        x2 := -10;
+      end
+      else
+      begin
+        x1 := -10;
+        x2 := 10;
+      end;
+    end;
+    21..High(Integer):
+    begin
+      x1 := 0;
+      y1 := -10;
+      if BeginVertex.X - EndVertex.X >= 150 then
+      begin
+        x2 := 10;
+        y2 := 0;
+      end
+      else if abs(BeginVertex.X - EndVertex.X) < 150 then
+      begin
+        x2 := 0;
+        y2 := 10;
+      end
+      else if BeginVertex.X - EndVertex.X <= - 150 then
+      begin
+        x2 := -10;
+        y2 := 0;
+      end;
+    end;
+  end;
   Edges.Add(TEdge.Create(Edges.Count + 1, BeginVertex, EndVertex, 1));
-  Graph.Canvas.Line(BeginVertex.X, BeginVertex.Y, EndVertex.X, EndVertex.Y);
+  Graph.Canvas.Line(BeginVertex.X + x1, BeginVertex.Y + y1, EndVertex.X + x2, EndVertex.Y + y2);
 end;
 
 //Is the Edge already exists?
@@ -161,7 +220,7 @@ begin
   Result := True;
   for i := 0 to Edges.Count - 1 do
     if ((TEdge(Edges[i]).Start = BeginVertex) and (TEdge(Edges[i]).Finish = EndVertex)) or
-    ((TEdge(Edges[i]).Start = EndVertex) and (TEdge(Edges[i]).Finish = BeginVertex)) then
+      ((TEdge(Edges[i]).Start = EndVertex) and (TEdge(Edges[i]).Finish = BeginVertex)) then
     begin
       Result := False;
       Exit;

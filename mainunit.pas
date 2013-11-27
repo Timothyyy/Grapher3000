@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Grids, Menus, Buttons, Helper;
+  ExtCtrls, Grids, Menus, Buttons, Helper, Math;
 
 type
 
@@ -72,7 +72,7 @@ begin
   begin
     if BeginVertex <> Nil then
     begin
-      if CheckVertex(TempVertex, Verteces) then
+      if CheckVertex(TempVertex, Verteces) and (BeginVertex <> FindVertex(X, Y, Verteces)) then
       begin
         if EdgeNotExists(BeginVertex, FindVertex(X, Y, Verteces), Edges)then
           DrawEdge(BeginVertex, FindVertex(X, Y, Verteces), Graph, Edges);
