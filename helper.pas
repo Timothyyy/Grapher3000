@@ -152,7 +152,7 @@ var
   x1, y1, x2, y2: Integer;
 begin
   case BeginVertex.Y - EndVertex.Y of
-    Low(Integer)..-21:
+    Low(Integer)..-51:
     begin
       x2 := 0;
       y2 := -10;
@@ -172,7 +172,7 @@ begin
         y1 := 0;
       end;
     end;
-    -20..20:
+    -50..50:
     begin
       y1 := 0;
       y2 := 0;
@@ -187,7 +187,7 @@ begin
         x2 := 10;
       end;
     end;
-    21..High(Integer):
+    51..High(Integer):
     begin
       x1 := 0;
       y1 := -10;
