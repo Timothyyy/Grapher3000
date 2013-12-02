@@ -35,20 +35,20 @@ type
     private
       //Fields of TEdge
       EdgeId: Integer;
-      BeginVertex: TVertex;
-      EndVertex: TVertex;
+      BeginVertex: TPoint;
+      EndVertex: TPoint;
       EdgeWeight: Integer;
       procedure SetId(const Id: Integer);
     public
       //Constructor
-      constructor Create(const Id: Integer; Start, Finish: TVertex; const Weight: Integer);
+      constructor Create(const Id: Integer; Start, Finish: TPoint; const Weight: Integer);
       //Properties for read/write data
       property Id: Integer
           read EdgeId
           write SetId;
-      property Start: TVertex
+      property Start: TPoint
           read BeginVertex;
-      property Finish: TVertex
+      property Finish: TPoint
           read EndVertex;
       property Weight: Integer
           read EdgeWeight;
@@ -65,6 +65,8 @@ type
   function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
 
   function VertecesNotIntersect(Vertex: TVertex; Verteces: TList): Boolean;
+
+  function PointInVertex(Point: TPoint; Vertex: TVertex): Boolean;
 
   procedure RemoveVertex(Vertex: TVertex; Verteces, Edges: TList; Graph: TImage);
 
@@ -85,7 +87,7 @@ begin
 end;
 
 //TEdge class constructor
-constructor TEdge.Create(const Id: Integer; Start, Finish: TVertex; const Weight: Integer);
+constructor TEdge.Create(const Id: Integer; Start, Finish: TPoint; const Weight: Integer);
 begin
   Self.EdgeId := Id;
   Self.BeginVertex := Start;
@@ -135,13 +137,21 @@ begin
     end;
 end;
 
+//Is point in vertex?
+function PointInVertex(Point: TPoint; Vertex: TVertex): Boolean;
+begin
+  Result := False;
+  if sqr(Point.X - Vertex.X) + sqr(Point.Y - Vertex.Y) <= 100 then
+    Result := True;
+end;
+
 //Find vertex
 function FindVertex(const X, Y: Integer; Verteces: TList): TVertex;
 var
   i: Integer;
 begin
   for i := 0 to Verteces.Count - 1 do
-    if sqr(X - TVertex(Verteces[i]).X) + sqr(Y - TVertex(Verteces[i]).Y) <= 100 then
+    if PointInVertex(Point(X, Y), TVertex(Verteces[i])) then
     begin
       Result := TVertex(Verteces[i]);
       Exit;
@@ -178,15 +188,30 @@ begin
     begin
       y1 := 0;
       y2 := 0;
-      if BeginVertex.X - EndVertex.X < -20 then
+      if BeginVertex.X - EndVertex.X < -50 then
       begin
         x1 := 10;
         x2 := -10;
       end
-      else
+      else if BeginVertex.X - EndVertex.X > 50 then
       begin
         x1 := -10;
         x2 := 10;
+      end
+      else
+      begin
+        x1 := 0;
+        x2 := 0;
+        if BeginVertex.Y < EndVertex.Y then
+        begin
+          y1 := 10;
+          y2 := -10;
+        end
+        else
+        begin
+          y1 := -10;
+          y2 := 10;
+        end;
       end;
     end;
     51..High(Integer):
@@ -210,7 +235,8 @@ begin
       end;
     end;
   end;
-  Edges.Add(TEdge.Create(Edges.Count + 1, BeginVertex, EndVertex, 1));
+  Edges.Add(TEdge.Create(Edges.Count + 1, Point(BeginVertex.X + x1, BeginVertex.Y + y1),
+    Point(EndVertex.X + x2, EndVertex.Y + y2), 1));
   Graph.Canvas.Line(BeginVertex.X + x1, BeginVertex.Y + y1, EndVertex.X + x2, EndVertex.Y + y2);
 end;
 
@@ -221,8 +247,8 @@ var
 begin
   Result := True;
   for i := 0 to Edges.Count - 1 do
-    if ((TEdge(Edges[i]).Start = BeginVertex) and (TEdge(Edges[i]).Finish = EndVertex)) or
-      ((TEdge(Edges[i]).Start = EndVertex) and (TEdge(Edges[i]).Finish = BeginVertex)) then
+    if (PointInVertex(TEdge(Edges[i]).Start, BeginVertex) and PointInVertex(TEdge(Edges[i]).Finish, EndVertex)) or
+      (PointInVertex(TEdge(Edges[i]).Start, EndVertex) and PointInVertex(TEdge(Edges[i]).Finish, BeginVertex)) then
     begin
       Result := False;
       Exit;
@@ -237,9 +263,17 @@ begin
   Graph.Canvas.Pen.Color := clWhite;
   Graph.Canvas.EllipseC(Vertex.X, Vertex.Y, 10, 10);
   Verteces.Remove(Vertex);
-  for i := 0 to Edges.Count - 1 do
-    if (TEdge(Edges[i]).Start = Vertex) or (TEdge(Edges[i]).Finish = Vertex) then
+  i := 0;
+  while i <> Edges.Count do
+  begin
+    if PointInVertex(TEdge(Edges[i]).Start, Vertex) or PointInVertex(TEdge(Edges[i]).Finish, Vertex) then
+    begin
       Graph.Canvas.Line(TEdge(Edges[i]).Start.X, TEdge(Edges[i]).Start.Y, TEdge(Edges[i]).Finish.X, TEdge(Edges[i]).Finish.Y);
+      Edges.Delete(i);
+      i := i -1;
+    end;
+    Inc(i);
+  end;
   Graph.Canvas.Pen.Color := clBlack;
   for i := Vertex.Id - 1 to Verteces.Count - 1 do
   begin
