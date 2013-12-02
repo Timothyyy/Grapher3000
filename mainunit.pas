@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Grids, Menus, Buttons, Helper, Math;
+  ExtCtrls, Grids, Menus, Buttons, Helper;
 
 type
 
@@ -63,27 +63,30 @@ procedure TMainForm.GraphMouseDown(Sender: TObject; Button: TMouseButton;
 var
   TempVertex: TVertex;
 begin
-  TempVertex := TVertex.Create(Verteces.Count, X, Y);
+  TempVertex := TVertex.Create(Verteces.Count + 1, X, Y);
   if AddVertex.Down and VertecesNotIntersect(TempVertex, Verteces) then
     DrawVertex(TempVertex, Graph, Verteces);
+  TempVertex := FindVertex(X, Y, Verteces);
   if ToolButton1.Down then
     ShowMessage(IntToStr(Verteces.Count));
   if AddEdge.Down then
   begin
     if BeginVertex <> Nil then
     begin
-      if CheckVertex(TempVertex, Verteces) and (BeginVertex <> FindVertex(X, Y, Verteces)) then
+      if CheckVertex(TempVertex, Verteces) and (BeginVertex <> TempVertex) then
       begin
-        if EdgeNotExists(BeginVertex, FindVertex(X, Y, Verteces), Edges)then
-          DrawEdge(BeginVertex, FindVertex(X, Y, Verteces), Graph, Edges);
+        if EdgeNotExists(BeginVertex, TempVertex, Edges)then
+          DrawEdge(BeginVertex, TempVertex, Graph, Edges);
         BeginVertex := Nil;
         ShowMessage(IntToStr(Edges.Count));
       end;
     end
-    else
-      if CheckVertex(TempVertex, Verteces) then
-        BeginVertex := FindVertex(X, Y, Verteces);
+    else if CheckVertex(TempVertex, Verteces) then
+        BeginVertex := TempVertex;
   end;
+  if DeleteVertex.Down then
+    if CheckVertex(TempVertex, Verteces) then
+      RemoveVertex(TempVertex, Verteces, Edges, Graph);
 end;
 
 end.

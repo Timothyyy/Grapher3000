@@ -5,7 +5,7 @@ unit Helper;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls;
+  Classes, SysUtils, ExtCtrls, Graphics;
 
 type
   //Vertex class
@@ -66,6 +66,8 @@ type
 
   function VertecesNotIntersect(Vertex: TVertex; Verteces: TList): Boolean;
 
+  procedure RemoveVertex(Vertex: TVertex; Verteces, Edges: TList; Graph: TImage);
+
 implementation
 
 //TVertex class constructor
@@ -104,7 +106,7 @@ var
 begin
   Result := False;
   for i := 0 to Verteces.Count - 1 do
-    if sqr(Vertex.X - TVertex(Verteces[i]).X) + sqr(Vertex.Y - TVertex(Verteces[i]).Y) <= 100 then
+    if Vertex = TVertex(Verteces[i]) then
     begin
       Result := True;
       Exit;
@@ -114,8 +116,8 @@ end;
 //Vertex drawing
 procedure DrawVertex(Vertex: TVertex; Graph: TImage; Verteces: TList);
 begin
-  graph.Canvas.Ellipse(Vertex.X - 10, Vertex.Y - 10, Vertex.X + 10, Vertex.Y + 10);
-  graph.Canvas.TextOut(Vertex.X - 6, Vertex.Y - 8, IntToStr(Verteces.Count + 1));
+  Graph.Canvas.Ellipse(Vertex.X - 10, Vertex.Y - 10, Vertex.X + 10, Vertex.Y + 10);
+  Graph.Canvas.TextOut(Vertex.X - 6, Vertex.Y - 8, IntToStr(Vertex.Id));
   Verteces.Add(Vertex);
 end;
 
@@ -225,6 +227,27 @@ begin
       Result := False;
       Exit;
     end;
+end;
+
+//Vertex removing
+procedure RemoveVertex(Vertex: TVertex; Verteces, Edges: TList; Graph: TImage);
+var
+  i: Integer;
+begin
+  Graph.Canvas.Pen.Color := clWhite;
+  Graph.Canvas.EllipseC(Vertex.X, Vertex.Y, 10, 10);
+  Verteces.Remove(Vertex);
+  for i := 0 to Edges.Count - 1 do
+    if (TEdge(Edges[i]).Start = Vertex) or (TEdge(Edges[i]).Finish = Vertex) then
+      Graph.Canvas.Line(TEdge(Edges[i]).Start.X, TEdge(Edges[i]).Start.Y, TEdge(Edges[i]).Finish.X, TEdge(Edges[i]).Finish.Y);
+  Graph.Canvas.Pen.Color := clBlack;
+  for i := Vertex.Id - 1 to Verteces.Count - 1 do
+  begin
+    TVertex(Verteces[i]).Id := TVertex(Verteces[i]).Id - 1;
+    Graph.Canvas.Ellipse(TVertex(Verteces[i]).X - 10, TVertex(Verteces[i]).Y - 10,
+      TVertex(Verteces[i]).X + 10, TVertex(Verteces[i]).Y + 10);
+    Graph.Canvas.TextOut(TVertex(Verteces[i]).X - 6, TVertex(Verteces[i]).Y - 8, IntToStr(TVertex(Verteces[i]).Id));
+  end;
 end;
 
 end.
