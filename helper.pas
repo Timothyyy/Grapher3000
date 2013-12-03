@@ -60,7 +60,7 @@ type
 
   function FindVertex(const X, Y: Integer; Verteces: TList): TVertex;
 
-  procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
+  procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer = 1);
 
   function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
 
@@ -159,7 +159,7 @@ begin
 end;
 
 //Edge drawing
-procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList);
+procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer = 1);
 var
   x1, y1, x2, y2: Integer;
 begin
@@ -238,6 +238,7 @@ begin
   Edges.Add(TEdge.Create(Edges.Count + 1, Point(BeginVertex.X + x1, BeginVertex.Y + y1),
     Point(EndVertex.X + x2, EndVertex.Y + y2), 1));
   Graph.Canvas.Line(BeginVertex.X + x1, BeginVertex.Y + y1, EndVertex.X + x2, EndVertex.Y + y2);
+  Graph.Canvas.TextOut(Round((BeginVertex.X + x1 + EndVertex.X + x2) / 2), Round((BeginVertex.Y + y1 + EndVertex.Y + y2) / 2), IntToStr(Weight));
 end;
 
 //Is the Edge already exists?
