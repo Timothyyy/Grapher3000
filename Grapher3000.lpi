@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="5">
       <Unit0>
         <Filename Value="Grapher3000.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -50,10 +50,20 @@
         <UnitName Value="MainUnit"/>
       </Unit1>
       <Unit2>
-        <Filename Value="helper.pas"/>
+        <Filename Value="customclasses.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Helper"/>
+        <UnitName Value="CustomClasses"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="verteceshelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VertecesHelper"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="edgeshelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="EdgesHelper"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
