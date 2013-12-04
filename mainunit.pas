@@ -65,7 +65,14 @@ var
 begin
   TempVertex := TVertex.Create(Verteces.Count + 1, X, Y);
   if AddVertex.Down and VertecesNotIntersect(TempVertex, Verteces) then
+  begin
     DrawVertex(TempVertex, Graph, Verteces);
+    MatrixGrid.ColCount := Verteces.Count + 1;
+    MatrixGrid.RowCount := Verteces.Count + 1;
+    //ShowMessage(IntToStr(MatrixGrid.ColCount));
+    MatrixGrid.Cells[0, TempVertex.Id] := IntToStr(TempVertex.Id);
+    MatrixGrid.Cells[TempVertex.Id, 0] := IntToStr(TempVertex.Id);
+  end;
   TempVertex := FindVertex(X, Y, Verteces);
   if ToolButton1.Down then
     ShowMessage(IntToStr(Verteces.Count));
@@ -86,7 +93,9 @@ begin
   end;
   if DeleteVertex.Down then
     if CheckVertex(TempVertex, Verteces) then
+    begin
       RemoveVertex(TempVertex, Verteces, Edges, Graph);
+    end;
 end;
 
 end.
