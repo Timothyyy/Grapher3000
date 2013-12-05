@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, MainUnit, VertecesHelper, CustomClasses, EdgesHelper;
+  Forms, MainUnit, CustomClasses, EdgesHelper, verticeshelper;
 
 {$R *.res}
 

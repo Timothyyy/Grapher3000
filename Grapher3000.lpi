@@ -55,14 +55,14 @@
         <UnitName Value="CustomClasses"/>
       </Unit2>
       <Unit3>
-        <Filename Value="verteceshelper.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="VertecesHelper"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="edgeshelper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="EdgesHelper"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="verticeshelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="VerticesHelper"/>
       </Unit4>
     </Units>
   </ProjectOptions>

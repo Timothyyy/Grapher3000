@@ -5,7 +5,7 @@ unit EdgesHelper;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, Graphics, CustomClasses, VertecesHelper;
+  Classes, SysUtils, ExtCtrls, Graphics, CustomClasses, VerticesHelper;
 
   procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer = 1);
 

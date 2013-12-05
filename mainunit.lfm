@@ -17,12 +17,12 @@ object MainForm: TMainForm
     Height = 510
     Top = 0
     Width = 650
-    ActivePage = GraphicalView
+    ActivePage = MatrixView
     Constraints.MaxHeight = 510
     Constraints.MaxWidth = 650
     Constraints.MinHeight = 510
     Constraints.MinWidth = 650
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object GraphicalView: TTabSheet
       Caption = 'GraphicalView'
@@ -116,6 +116,7 @@ object MainForm: TMainForm
         ColCount = 1
         RowCount = 1
         TabOrder = 0
+        OnColRowInserted = MatrixGridColRowInserted
       end
     end
   end
