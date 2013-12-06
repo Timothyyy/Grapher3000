@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="18">
+    <Units Count="20">
       <Unit0>
         <Filename Value="Grapher3000.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="28" Y="10"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="106"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainunit.pas"/>
@@ -24,9 +24,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="88"/>
-        <CursorPos X="40" Y="99"/>
-        <UsageCount Value="95"/>
+        <TopLine Value="93"/>
+        <CursorPos X="41" Y="112"/>
+        <UsageCount Value="106"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -36,20 +36,12 @@
         <UnitName Value="CustomClasses"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="26" Y="1"/>
-        <UsageCount Value="30"/>
+        <TopLine Value="17"/>
+        <CursorPos X="22" Y="28"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="verteceshelper.pas"/>
-        <UnitName Value="VertecesHelper"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="3" Y="61"/>
-        <UsageCount Value="29"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="edgeshelper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="EdgesHelper"/>
@@ -57,178 +49,226 @@
         <WindowIndex Value="0"/>
         <TopLine Value="93"/>
         <CursorPos X="30" Y="3"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="helper.pas"/>
-        <UnitName Value="helper"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="86"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="classes.pas"/>
-        <UnitName Value="Classes"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="11" Y="1"/>
-        <UsageCount Value="22"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
-        <UnitName Value="ComCtrls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="531"/>
-        <CursorPos X="14" Y="541"/>
-        <UsageCount Value="4"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="C:\lazarus\lcl\controls.pp"/>
-        <UnitName Value="Controls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="2067"/>
-        <CursorPos X="14" Y="2076"/>
-        <UsageCount Value="4"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\objpas.pp"/>
-        <UnitName Value="objpas"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="17"/>
-        <CursorPos X="8" Y="28"/>
-        <UsageCount Value="10"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
-        <UnitName Value="ExtCtrls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="504"/>
-        <CursorPos X="3" Y="512"/>
-        <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
-        <UnitName Value="Graphics"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1170"/>
-        <CursorPos X="14" Y="1180"/>
-        <UsageCount Value="8"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="C:\lazarus\lcl\dialogs.pp"/>
-        <UnitName Value="Dialogs"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="13"/>
-        <CursorPos X="11" Y="515"/>
-        <UsageCount Value="8"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\inc\mathh.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
-        <CursorPos X="14" Y="70"/>
-        <UsageCount Value="9"/>
-      </Unit13>
-      <Unit14>
-        <Filename Value="C:\lazarus\lcl\include\canvas.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1326"/>
-        <CursorPos X="1" Y="1337"/>
-        <UsageCount Value="9"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\win64\classes.pp"/>
-        <UnitName Value="Classes"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
-      </Unit15>
-      <Unit16>
-        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="21"/>
-        <CursorPos X="4" Y="32"/>
-        <UsageCount Value="10"/>
-      </Unit16>
-      <Unit17>
+      </Unit3>
+      <Unit4>
         <Filename Value="verticeshelper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="VerticesHelper"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="12"/>
-        <CursorPos X="33" Y="31"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="28"/>
+        <CursorPos X="13" Y="12"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="verteceshelper.pas"/>
+        <UnitName Value="VertecesHelper"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="61"/>
+        <CursorPos X="3" Y="61"/>
+        <UsageCount Value="28"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="helper.pas"/>
+        <UnitName Value="helper"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="85"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="classes.pas"/>
+        <UnitName Value="Classes"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="11" Y="1"/>
+        <UsageCount Value="21"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
+        <UnitName Value="ComCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="531"/>
+        <CursorPos X="14" Y="541"/>
+        <UsageCount Value="3"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2067"/>
+        <CursorPos X="14" Y="2076"/>
+        <UsageCount Value="3"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\objpas.pp"/>
+        <UnitName Value="objpas"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="17"/>
+        <CursorPos X="8" Y="28"/>
+        <UsageCount Value="9"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="504"/>
+        <CursorPos X="3" Y="512"/>
+        <UsageCount Value="9"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1170"/>
+        <CursorPos X="14" Y="1180"/>
+        <UsageCount Value="7"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="11" Y="515"/>
+        <UsageCount Value="7"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\inc\mathh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="34"/>
+        <CursorPos X="14" Y="70"/>
+        <UsageCount Value="8"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\lcl\include\canvas.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1326"/>
+        <CursorPos X="1" Y="1337"/>
+        <UsageCount Value="8"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\win64\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="61"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\fpc\2.6.2\source\rtl\objpas\classes\classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="496"/>
+        <CursorPos X="3" Y="496"/>
+        <UsageCount Value="10"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="C:\Users\Timmy\Desktop\samples\SAMPLE01.PAS"/>
+        <UnitName Value="SAMPLE01"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="8730"/>
+        <CursorPos X="1" Y="8675"/>
+        <UsageCount Value="13"/>
+      </Unit19>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="15" HistoryIndex="14">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="52" Column="4" TopLine="42"/>
+        <Caret Line="106" Column="12" TopLine="87"/>
       </Position1>
       <Position2>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="19" Column="14" TopLine="10"/>
+        <Filename Value="verticeshelper.pas"/>
+        <Caret Line="39" Column="54" TopLine="31"/>
       </Position2>
       <Position3>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="72" Column="37" TopLine="59"/>
+        <Filename Value="edgeshelper.pas"/>
+        <Caret Line="5" Column="39" TopLine="1"/>
       </Position3>
       <Position4>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="73" Column="72" TopLine="63"/>
+        <Filename Value="customclasses.pas"/>
+        <Caret Line="1" Column="26" TopLine="1"/>
       </Position4>
       <Position5>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="74" Column="38" TopLine="61"/>
+        <Filename Value="verticeshelper.pas"/>
+        <Caret Line="1" Column="24" TopLine="1"/>
       </Position5>
       <Position6>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="72" Column="21" TopLine="63"/>
+        <Filename Value="edgeshelper.pas"/>
+        <Caret Line="3" Column="30" TopLine="1"/>
       </Position6>
       <Position7>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="73" Column="67" TopLine="60"/>
+        <Caret Line="2" Column="21" TopLine="1"/>
       </Position7>
       <Position8>
-        <Filename Value="customclasses.pas"/>
-        <Caret Line="83" Column="1" TopLine="25"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="21" Column="22" TopLine="9"/>
       </Position8>
       <Position9>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="106" Column="12" TopLine="87"/>
+        <Caret Line="33" Column="34" TopLine="15"/>
       </Position9>
       <Position10>
-        <Filename Value="verticeshelper.pas"/>
-        <Caret Line="39" Column="54" TopLine="31"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="33" Column="34" TopLine="15"/>
       </Position10>
       <Position11>
-        <Filename Value="edgeshelper.pas"/>
-        <Caret Line="5" Column="39" TopLine="1"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="110" Column="36" TopLine="92"/>
       </Position11>
       <Position12>
-        <Filename Value="customclasses.pas"/>
-        <Caret Line="1" Column="26" TopLine="1"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="73" Column="7" TopLine="62"/>
       </Position12>
       <Position13>
-        <Filename Value="verticeshelper.pas"/>
-        <Caret Line="1" Column="24" TopLine="1"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="112" Column="7" TopLine="93"/>
       </Position13>
       <Position14>
-        <Filename Value="edgeshelper.pas"/>
-        <Caret Line="3" Column="30" TopLine="1"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="111" Column="7" TopLine="93"/>
       </Position14>
       <Position15>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="2" Column="21" TopLine="1"/>
+        <Caret Line="72" Column="47" TopLine="61"/>
       </Position15>
+      <Position16>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="112" Column="7" TopLine="94"/>
+      </Position16>
+      <Position17>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="108" Column="41" TopLine="91"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="74" Column="45" TopLine="65"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="109" Column="43" TopLine="92"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="112" Column="38" TopLine="92"/>
+      </Position20>
+      <Position21>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="108" Column="42" TopLine="93"/>
+      </Position21>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

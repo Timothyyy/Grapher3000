@@ -71,7 +71,6 @@ begin
     DrawVertex(TempVertex, Graph, Vertices);
     MatrixGrid.ColCount := Vertices.Count + 1;
     MatrixGrid.RowCount := Vertices.Count + 1;
-    //ShowMessage(IntToStr(MatrixGrid.ColCount));
     MatrixGrid.Cells[0, TempVertex.Id] := IntToStr(TempVertex.Id);
     MatrixGrid.Cells[TempVertex.Id, 0] := IntToStr(TempVertex.Id);
   end;
@@ -102,8 +101,15 @@ end;
 
 procedure TMainForm.MatrixGridColRowInserted(Sender: TObject;
   IsColumn: Boolean; sIndex, tIndex: Integer);
+var
+  i: Integer;
 begin
-  ShowMessage(IntToStr(sIndex) + ' ' + IntToStr(tIndex));
+  if IsColumn then
+    for i := 1 to Vertices.Count - 1 do
+      MatrixGrid.Cells[Vertices.Count, i] := '0'
+  else
+    for i := 1 to Vertices.Count do
+      MatrixGrid.Cells[i, Vertices.Count] := '0';
 end;
 
 end.
