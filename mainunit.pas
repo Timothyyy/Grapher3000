@@ -84,7 +84,11 @@ begin
       if CheckVertex(TempVertex, Vertices) and (BeginVertex <> TempVertex) then
       begin
         if EdgeNotExists(BeginVertex, TempVertex, Edges)then
+        begin
           DrawEdge(BeginVertex, TempVertex, Graph, Edges);
+          MatrixGrid.Cells[BeginVertex.Id, TempVertex.Id] := '1';
+          MatrixGrid.Cells[TempVertex.Id, BeginVertex.Id] := '1';
+        end;
         BeginVertex := Nil;
         ShowMessage(IntToStr(Edges.Count));
       end;
