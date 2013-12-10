@@ -19,13 +19,13 @@ type
     Graph: TImage;
     MatrixView: TTabSheet;
     MatrixGrid: TStringGrid;
+    Prudence: TRadioGroup;
     ToolBar: TToolBar;
     AddVertex: TToolButton;
     AddEdge: TToolButton;
     Devider: TToolButton;
     DeleteVertex: TToolButton;
     DeleteEdge: TToolButton;
-    ToolButton1: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure GraphMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -64,6 +64,7 @@ procedure TMainForm.GraphMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
   TempVertex: TVertex;
+  Weight: Integer;
 begin
   TempVertex := TVertex.Create(Vertices.Count + 1, X, Y);
   if AddVertex.Down and VerticesNotIntersect(TempVertex, Vertices) then
@@ -75,8 +76,6 @@ begin
     MatrixGrid.Cells[TempVertex.Id, 0] := IntToStr(TempVertex.Id);
   end;
   TempVertex := FindVertex(X, Y, Vertices);
-  if ToolButton1.Down then
-    ShowMessage(IntToStr(Vertices.Count));
   if AddEdge.Down then
   begin
     if BeginVertex <> Nil then
@@ -85,12 +84,14 @@ begin
       begin
         if EdgeNotExists(BeginVertex, TempVertex, Edges)then
         begin
-          DrawEdge(BeginVertex, TempVertex, Graph, Edges);
-          MatrixGrid.Cells[BeginVertex.Id, TempVertex.Id] := '1';
-          MatrixGrid.Cells[TempVertex.Id, BeginVertex.Id] := '1';
+          Weight := 1;
+          if Prudence.ItemIndex = 1 then
+            Weight := StrToInt(InputBox('Grapher3000', 'Input edge weight:', '1'));
+          DrawEdge(BeginVertex, TempVertex, Graph, Edges, Weight);
+          MatrixGrid.Cells[BeginVertex.Id, TempVertex.Id] := IntToStr(Weight);
+          MatrixGrid.Cells[TempVertex.Id, BeginVertex.Id] := IntToStr(Weight);
         end;
         BeginVertex := Nil;
-        ShowMessage(IntToStr(Edges.Count));
       end;
     end
     else if CheckVertex(TempVertex, Vertices) then

@@ -14,7 +14,7 @@ uses
 implementation
 
 //Edge drawing
-procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer = 1);
+procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer);
 var
   x1, y1, x2, y2: Integer;
 begin
