@@ -84,6 +84,7 @@ var
   i: Integer;
 begin
   Graph.Canvas.Pen.Color := clWhite;
+  Graph.Canvas.Font.Color := clWhite;
   Graph.Canvas.EllipseC(Vertex.X, Vertex.Y, 10, 10);
   Vertices.Remove(Vertex);
   i := 0;
@@ -92,12 +93,15 @@ begin
     if PointInVertex(TEdge(Edges[i]).Start, Vertex) or PointInVertex(TEdge(Edges[i]).Finish, Vertex) then
     begin
       Graph.Canvas.Line(TEdge(Edges[i]).Start.X, TEdge(Edges[i]).Start.Y, TEdge(Edges[i]).Finish.X, TEdge(Edges[i]).Finish.Y);
+      Graph.Canvas.TextOut(Round((TEdge(Edges[i]).Start.X + TEdge(Edges[i]).Finish.X) / 2),
+        Round((TEdge(Edges[i]).Start.Y + TEdge(Edges[i]).Finish.Y) / 2), IntToStr(TEdge(Edges[i]).Weight));
       Edges.Delete(i);
-      i := i -1;
+      Dec(i);
     end;
     Inc(i);
   end;
   Graph.Canvas.Pen.Color := clBlack;
+  Graph.Canvas.Font.Color := clBlack;
   for i := Vertex.Id - 1 to Vertices.Count - 1 do
   begin
     TVertex(Vertices[i]).Id := TVertex(Vertices[i]).Id - 1;
