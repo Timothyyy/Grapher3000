@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Grids, Menus, Buttons, VerticesHelper, EdgesHelper, CustomClasses;
+  ExtCtrls, Grids, Menus, Buttons, StdCtrls, VerticesHelper, EdgesHelper,
+  CustomClasses;
 
 type
 
@@ -19,18 +20,24 @@ type
     Graph: TImage;
     MatrixView: TTabSheet;
     MatrixGrid: TStringGrid;
-    Prudence: TRadioGroup;
+    DirectionType: TRadioGroup;
+    Devider2: TToolButton;
+    ClearGraph: TToolButton;
+    ToolButton1: TToolButton;
+    WeightType: TRadioGroup;
     ToolBar: TToolBar;
     AddVertex: TToolButton;
     AddEdge: TToolButton;
-    Devider: TToolButton;
+    Devider1: TToolButton;
     DeleteVertex: TToolButton;
     DeleteEdge: TToolButton;
+    procedure ClearGraphClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure GraphMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure MatrixGridColRowInserted(Sender: TObject; IsColumn: Boolean;
       sIndex, tIndex: Integer);
+    procedure ToolButton1Click(Sender: TObject);
   private
     { private declarations }
     Edges: TList;
@@ -56,6 +63,16 @@ begin
   Edges := TList.Create;
   Graph.Canvas.Rectangle(Graph.BoundsRect);
   Graph.Canvas.Clear;
+  BeginVertex := Nil;
+end;
+
+procedure TMainForm.ClearGraphClick(Sender: TObject);
+begin
+  Graph.Canvas.Clear;
+  Vertices.Clear;
+  Edges.Clear;
+  MatrixGrid.ColCount := 1;
+  MatrixGrid.RowCount := 1;
   BeginVertex := Nil;
 end;
 
@@ -85,7 +102,7 @@ begin
         if EdgeNotExists(BeginVertex, TempVertex, Edges)then
         begin
           Weight := 1;
-          if Prudence.ItemIndex = 1 then
+          if WeightType.ItemIndex = 1 then
             Weight := StrToInt(InputBox('Grapher3000', 'Input edge weight:', '1'));
           DrawEdge(BeginVertex, TempVertex, Graph, Edges, Weight);
           MatrixGrid.Cells[BeginVertex.Id, TempVertex.Id] := IntToStr(Weight);
@@ -115,6 +132,11 @@ begin
   else
     for i := 1 to Vertices.Count do
       MatrixGrid.Cells[i, Vertices.Count] := '0';
+end;
+
+procedure TMainForm.ToolButton1Click(Sender: TObject);
+begin
+  ShowMessage('Vertices: ' + IntToStr(Vertices.Count) + Char(#10) + 'Edges: ' + IntToStr(Edges.Count));
 end;
 
 end.
