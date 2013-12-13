@@ -5,11 +5,13 @@ unit EdgesHelper;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, Graphics, CustomClasses, VerticesHelper;
+  Classes, SysUtils, ExtCtrls, Graphics, CustomClasses, VerticesHelper, Math;
 
   procedure DrawEdge(BeginVertex, EndVertex: TVertex; Graph: TImage; Edges: TList; const Weight: Integer = 1);
 
   function EdgeNotExists(BeginVertex, EndVertex: TVertex; Edges: TList): Boolean;
+
+  function CursorOnEdge(Cursor, Start, Finish: TPoint): Boolean;
 
 implementation
 
@@ -109,6 +111,13 @@ begin
       Result := False;
       Exit;
     end;
+end;
+
+//Is cursor on edge?
+function CursorOnEdge(Cursor, Start, Finish: TPoint): Boolean;
+begin
+  Result := RoundTo((Cursor.X - Start.X) / (Finish.X - Start.X), -1) =
+            RoundTo((Cursor.Y - Start.Y) / (Finish.Y - Start.Y), -1);
 end;
 
 end.

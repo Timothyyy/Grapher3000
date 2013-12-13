@@ -34,6 +34,7 @@ object MainForm: TMainForm
         Top = 0
         Width = 650
         OnMouseDown = GraphMouseDown
+        OnMouseMove = GraphMouseMove
       end
       object ToolBar: TToolBar
         Left = 0

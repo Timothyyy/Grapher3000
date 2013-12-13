@@ -6,8 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, Grids, Menus, Buttons, StdCtrls, VerticesHelper, EdgesHelper,
-  CustomClasses;
+  ExtCtrls, Grids, Menus, Buttons, VerticesHelper, EdgesHelper, CustomClasses;
 
 type
 
@@ -35,6 +34,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure GraphMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure GraphMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
+      );
     procedure MatrixGridColRowInserted(Sender: TObject; IsColumn: Boolean;
       sIndex, tIndex: Integer);
     procedure ToolButton1Click(Sender: TObject);
@@ -119,6 +120,21 @@ begin
     begin
       RemoveVertex(TempVertex, Vertices, Edges, Graph);
     end;
+end;
+
+procedure TMainForm.GraphMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+var
+  i: Integer;
+begin
+  Graph.Cursor := crDefault;
+  if DeleteEdge.Down then
+    for i := 0 to Edges.Count - 1 do
+      if CursorOnEdge(Point(X, Y), TEdge(Edges[i]).Start, TEdge(Edges[i]).Finish) then
+      begin
+        Graph.Cursor := crHandPoint;
+        Break;
+      end;
 end;
 
 procedure TMainForm.MatrixGridColRowInserted(Sender: TObject;
